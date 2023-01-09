@@ -90,12 +90,14 @@ tbl = [
     "~",
 ]
 
-lst = []
+lst = [0] * 20
 i = int(ipaddress.ip_address("1080:0:0:0:8:800:200C:417A"))
+l = 0
 print(i)
 while i > 0:
-    lst.append(i % 85)
+    lst[l] = i % 85
     i = i // 85
+    l = l + 1
 
 print("".join(list(map(lambda x: tbl[x], list(reversed(lst))))))
 
