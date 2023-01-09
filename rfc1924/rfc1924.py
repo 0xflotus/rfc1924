@@ -109,3 +109,9 @@ def decode(encoded_ipv6):
         sum = sum + elem * 0x55 ** exp
         exp -= 1
     return str(IPv6Address(sum))
+
+
+def savings(ipv6):
+    encoded = encode(ipv6)
+    saving = int((1 - len(encoded) / len(ipv6)) * 100)
+    return f"You saved {saving}%"
