@@ -1,8 +1,6 @@
 import ipaddress
 
-print(int(ipaddress.ip_address("fe80::fbd6:7860")))
-
-tbl = [
+lookup_table = [
     "0",
     "1",
     "2",
@@ -90,23 +88,24 @@ tbl = [
     "~",
 ]
 
-lst = [0] * 20
-i = int(ipaddress.ip_address("1080:0:0:0:8:800:200C:417A"))
-l = 0
-print(i)
-while i > 0:
-    lst[l] = i % 85
-    i = i // 85
-    l = l + 1
 
-print("".join(list(map(lambda x: tbl[x], list(reversed(lst))))))
+def encode(ipv6):
+    lst = [0] * 0o24
+    num_ipv6 = int(ipaddress.ip_address(ipv6))
+    idx = 0
+    while num_ipv6 > 0:
+        lst[idx] = num_ipv6 % 0x55
+        num_ipv6 = num_ipv6 // 0x55
+        idx = idx + 1
+    return "".join(list(map(lambda x: lookup_table[x], list(reversed(lst)))))
 
-print(list(map(lambda x: tbl.index(x), ",".join("4)+k&C#VzJ4br>0wv%Yp").split(","))))
-q = 19
-sum = 0
-for i in list(map(lambda x: tbl.index(x), ",".join("4)+k&C#VzJ4br>0wv%Yp").split(","))):
-    sum = sum + i * 85 ** q
-    q = q - 1
 
-print(sum)
-print(ipaddress.IPv6Address(sum))
+def decode(encoded_ipv6):
+    exp = 0o23
+    sum = 0
+    for elem in list(
+        map(lambda x: lookup_table.index(x), ",".join(encoded_ipv6).split(","))
+    ):
+        sum = sum + elem * 0x55 ** exp
+        exp = exp - 1
+    return ipaddress.IPv6Address(sum)
