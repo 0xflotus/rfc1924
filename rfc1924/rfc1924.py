@@ -1,5 +1,4 @@
 from ipaddress import IPv6Address
-from typing import str
 
 lookup_table = [
     "0",
@@ -90,7 +89,7 @@ lookup_table = [
 ]
 
 
-def encode(ipv6: str) -> str:
+def encode(ipv6):
     lst = [0] * 0o24
     num_ipv6 = int(IPv6Address(ipv6))
     idx = 0
@@ -101,7 +100,7 @@ def encode(ipv6: str) -> str:
     return "".join(list(map(lambda x: lookup_table[x], list(reversed(lst)))))
 
 
-def decode(encoded_ipv6: str) -> str:
+def decode(encoded_ipv6):
     exp = 0o23
     sum = 0
     for elem in list(
