@@ -1,3 +1,5 @@
+# This Dockerfile is only for test purposes.
+
 FROM python:3.9-alpine
 LABEL maintainer "0xflotus"
 
