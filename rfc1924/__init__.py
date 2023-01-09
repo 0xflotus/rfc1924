@@ -1,4 +1,4 @@
-__version__ = "0.1.7"
+__version__ = "0.1.8-pre"
 __author__ = "0xflotus"
 
 from .rfc1924 import encode, decode
