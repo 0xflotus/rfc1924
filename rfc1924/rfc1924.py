@@ -105,10 +105,10 @@ def decode(encoded_ipv6):
     return str(
         IPv6Address(
             reduce(
-                lambda sum, vec: sum + vec[0] * 0x55 ** (0o23 - vec[1]),
+                lambda sum, vec: sum + vec[0] * 0x55 ** vec[1],
                 map(
                     lambda vec: (lookup_table.index(vec[0]), vec[1]),
-                    zip(encoded_ipv6, range(0o24)),
+                    zip(encoded_ipv6, range(0o23, -1, -1)),
                 ),
                 0,
             )
