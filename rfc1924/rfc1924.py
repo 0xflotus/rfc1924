@@ -98,7 +98,7 @@ def encode(ipv6):
         lst[idx] = num_ipv6 % 0x55
         num_ipv6 //= 0x55
         idx += 1
-    return "".join(list(map(lambda x: lookup_table[x], list(reversed(lst)))))
+    return "".join(map(lambda x: lookup_table[x], reversed(lst)))
 
 
 def decode(encoded_ipv6):
