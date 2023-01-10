@@ -118,6 +118,3 @@ def decode(encoded_ipv6):
 
 def savings(ipv6):
     return f"You saved {int((1 - len(encode(ipv6)) / len(ipv6)) * 100)}%"
-
-
-print(decode("AN?6(i3Y+yVr74uX@J3P"))
