@@ -1,4 +1,5 @@
 from ipaddress import IPv6Address
+from functools import reduce
 
 lookup_table = [
     "0",
@@ -101,17 +102,22 @@ def encode(ipv6):
 
 
 def decode(encoded_ipv6):
-    exp = 0o23
-    sum = 0
-    for elem in list(
-        map(lambda x: lookup_table.index(x), ",".join(encoded_ipv6).split(","))
-    ):
-        sum = sum + elem * 0x55 ** exp
-        exp -= 1
-    return str(IPv6Address(sum))
+    return str(
+        IPv6Address(
+            reduce(
+                lambda sum, vec: sum + vec[0] * 0x55 ** (0o23 - vec[1]),
+                map(
+                    lambda vec: (lookup_table.index(vec[0]), vec[1]),
+                    zip(encoded_ipv6, range(0o24)),
+                ),
+                0,
+            )
+        )
+    )
 
 
 def savings(ipv6):
-    encoded = encode(ipv6)
-    saving = int((1 - len(encoded) / len(ipv6)) * 100)
-    return f"You saved {saving}%"
+    return f"You saved {int((1 - len(encode(ipv6)) / len(ipv6)) * 100)}%"
+
+
+print(decode("AN?6(i3Y+yVr74uX@J3P"))
