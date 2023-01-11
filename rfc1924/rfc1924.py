@@ -91,7 +91,8 @@ lookup_table = [
 
 
 def encode(ipv6):
-    return "".join(
+    return reduce(
+        lambda prv, nxt: prv + nxt,
         map(
             lambda chr: lookup_table[chr],
             reversed(
@@ -102,7 +103,7 @@ def encode(ipv6):
                     )
                 )
             ),
-        )
+        ),
     )
 
 
