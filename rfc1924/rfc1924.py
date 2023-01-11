@@ -91,14 +91,19 @@ lookup_table = [
 
 
 def encode(ipv6):
-    lst = [0] * 0o24
-    num_ipv6 = int(IPv6Address(ipv6))
-    idx = 0
-    while num_ipv6 > 0:
-        lst[idx] = num_ipv6 % 0x55
-        num_ipv6 //= 0x55
-        idx += 1
-    return "".join(map(lambda x: lookup_table[x], reversed(lst)))
+    return "".join(
+        map(
+            lambda chr: lookup_table[chr],
+            reversed(
+                list(
+                    map(
+                        lambda cnt: int(IPv6Address(ipv6)) // 0x55 ** cnt % 0x55,
+                        range(0o24),
+                    )
+                )
+            ),
+        )
+    )
 
 
 def decode(encoded_ipv6):
