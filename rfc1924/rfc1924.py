@@ -96,12 +96,7 @@ def encode(ipv6):
         map(
             lambda chr: lookup_table[chr],
             reversed(
-                list(
-                    map(
-                        lambda cnt: int(IPv6Address(ipv6)) // 0x55 ** cnt % 0x55,
-                        range(0o24),
-                    )
-                )
+                [int(IPv6Address(ipv6)) // 0x55 ** cnt % 0x55 for cnt in range(0o24)]
             ),
         ),
     )

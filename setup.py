@@ -6,7 +6,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="rfc1924",
-    version="0.3.1",
+    version="0.3.2",
     description="Implementation of RFC 1924",
     long_description=README,
     long_description_content_type="text/markdown",
