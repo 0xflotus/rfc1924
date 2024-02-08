@@ -1,6 +1,6 @@
 # This Dockerfile is only for test purposes.
 
-FROM python:3.9-alpine
+FROM python:3.12-alpine
 LABEL maintainer "0xflotus"
 
 RUN apk add --virtual build-deps --no-cache gcc musl-dev 
