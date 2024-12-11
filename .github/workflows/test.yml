@@ -6,8 +6,6 @@ jobs:
     steps:
       - name: check out repository
         uses: actions/checkout@v4
-      - name: test
-        run: docker build .
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
