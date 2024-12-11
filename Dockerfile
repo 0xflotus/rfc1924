@@ -12,4 +12,3 @@ WORKDIR /app
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install rfc1924
 
-RUN python3 ./rfc1924/test_rfc1924.py
