@@ -1,7 +1,29 @@
-on: push
+name: Lint and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out repository
+        uses: actions/checkout@v5
+      - name: Lint
+        uses: astral-sh/ruff-action@v3
+        with:
+          version: 0.13.3
+          args: check
+          src: "./rfc1924"
   test:
-    name: test
+    name: Testing
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: check out repository
@@ -10,11 +32,5 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install pytest
-      - name: Lint
-        uses: astral-sh/ruff-action@v3
-        with:
-          version: 0.13.3
-          args: check
-          src: "./rfc1924"
       - name: Test with pytest
         run: python -m pytest --doctest-modules
