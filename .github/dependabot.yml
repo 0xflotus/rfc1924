@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "11:00"
+      timezone: "Europe/Berlin"
+    assignees:
+      - 0xflotus
+    open-pull-requests-limit: 3
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "11:00"
+      timezone: "Europe/Berlin"
+    assignees:
+      - 0xflotus
