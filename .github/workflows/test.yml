@@ -16,7 +16,7 @@ jobs:
       - name: check out repository
         uses: actions/checkout@v7
       - name: Lint
-        uses: astral-sh/ruff-action@v3
+        uses: astral-sh/ruff-action@v4
         with:
           version: 0.13.3
           args: check
